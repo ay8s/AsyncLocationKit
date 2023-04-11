@@ -333,6 +333,7 @@ extension AsyncLocationManager {
         })
     }
     
+    #if !APPCLIP
     private func locationPermissionAlways() async -> CLAuthorizationStatus {
         let authorizationPerformer = RequestAuthorizationPerformer(currentStatus: getAuthorizationStatus())
         return await withTaskCancellationHandler(operation: {
@@ -359,6 +360,7 @@ extension AsyncLocationManager {
             proxyDelegate.cancel(for: authorizationPerformer.uniqueIdentifier)
         })
     }
+    #endif
 
     @available(iOS 14, watchOS 7, *)
     private func locationPermissionTemporaryFullAccuracy(purposeKey: String) async throws -> CLAccuracyAuthorization? {
